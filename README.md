@@ -1,8 +1,8 @@
-# Template React / Express App on Typescript
+#     git push --set-upstream origin master
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Template to create an React / Express App on Typescript
+This project involves serving as the operational lead for a major service group specializing in fleet vehicle provision. The objective is to create a comprehensive suite of tools that will enhance the efficiency and speed of developing a web application. These tools will be designed to streamline various aspects of fleet management, including vehicle tracking, maintenance scheduling, and resource allocation. The project aims to optimize the development process and ensure a seamless user experience for both administrators and end-users of the application.
 
 ## Table des matières
 
