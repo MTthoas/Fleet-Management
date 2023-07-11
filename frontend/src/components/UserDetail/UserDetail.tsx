@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { UserDto } from "../../dto/userDto";
 import { getUser } from "../../services";
 import { useParams } from "react-router-dom";
+import BackButton from "../GoBackBtn/GoBackBtn";
 
 function UserDetail() {
   const { id } = useParams<{ id: string }>();
@@ -39,7 +40,8 @@ function UserDetail() {
 
   return user ? (
     <div className="p-6 max-w-md mx-auto mt-5 md:mt-10 bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-      <h2 className="mb-4 text-xl font-bold text-black">
+      <BackButton />
+      <h2 className="my-4 text-xl font-bold text-black">
         {user.name} ({user.username})
       </h2>
       <p>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { ArticleDto } from "../../dto";
 import { getArticles } from "../../services";
+import { Link } from "react-router-dom";
 
 const ArticleList = () => {
   const [posts, setPosts] = useState<ArticleDto[]>([]);
@@ -36,11 +36,13 @@ const ArticleList = () => {
       <h2 className="mb-4 text-2xl text-center font-bold text-black">
         Liste des articles
       </h2>
-      <ul className="space-y-4">
+      <ul>
         {posts.map((post: ArticleDto) => (
-          <li key={post.id} className="p-3 bg-gray-100 rounded-md">
-            {post.title}
-          </li>
+          <Link to={`/article/${post.id}`}>
+            <li key={post.id} className="p-3 mb-4 bg-gray-100 rounded-md">
+              {post.title}
+            </li>
+          </Link>
         ))}
       </ul>
     </div>

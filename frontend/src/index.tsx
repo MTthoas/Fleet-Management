@@ -9,6 +9,7 @@ import UserList from "./components/UserList/UserList";
 import UserDetail from "./components/UserDetail/UserDetail";
 import CommentList from "./components/CommentList/CommentList";
 import ArticleList from "./components/ArticleList/ArticleList";
+import ArticleDetail from "./components/ArticleDetail/ArticleDetail";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -23,6 +24,7 @@ root.render(
         <Route path="/user/:id" element={<UserDetail />} />
         <Route path="/comments" element={<CommentList />} />
         <Route path="/articles" element={<ArticleList />} />
+        <Route path="/article/:id" element={<ArticleDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
