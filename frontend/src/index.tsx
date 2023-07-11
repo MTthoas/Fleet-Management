@@ -7,6 +7,8 @@ import NotFound from "./components/Error/notFound";
 import Navbar from "./components/Navbar/Navbar";
 import UserList from "./components/UserList/UserList";
 import UserDetail from "./components/UserDetail/UserDetail";
+import CommentList from "./components/CommentList/CommentList";
+import ArticleList from "./components/ArticleList/ArticleList";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,6 +21,8 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/users" element={<UserList />} />
         <Route path="/user/:id" element={<UserDetail />} />
+        <Route path="/comments" element={<CommentList />} />
+        <Route path="/articles" element={<ArticleList />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
