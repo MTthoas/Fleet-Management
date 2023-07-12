@@ -48,7 +48,7 @@ Vous devez automatiser l’installation d’un environnement de développement W
 Vous devez montrer un minimum de configuration et ajouter du style à l’aide des différents plugins, Fish et Tmux afin de rendre l’environnement plus agréable à utiliser pour vos développeurs.
 
 
-# <ind>Bonus (5 points)</ins>
+### <ind>Bonus (5 points)</ins>
 
 - Cluster Kubernetes ou Docker Swarm
 - Code bien commenté
