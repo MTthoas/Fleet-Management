@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleet-management
+spec:
+  type: LoadBalancer
+  selector:
+    app: fleet-management
+  ports:
+  - port: 3030
+    targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fleet-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fleet-management
+  template:
+    metadata:
+      labels:
+        app: fleet-management
+    spec:
+      containers:
+      - name: fleet-management
+        image: ronfflex/fleet-management
+        resources:
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: fleet-management-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup-cronjob
+spec:
+  schedule: "30 3 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup
+            image: ronfflex/fleet-management
+            command:
+            - /bin/sh
+            - -c
+            - /app/scripts/backup-script.sh
+            volumeMounts:
+            - name: backup-storage
+              mountPath: /backup
+          restartPolicy: OnFailure
+          volumes:
+          - name: backup-storage
+            persistentVolumeClaim:
+              claimName: fleet-management-pvc
