@@ -2,17 +2,18 @@
 
 ## Requirements
 - Docker
-- Kubernetes (minikube)
+- Kubernetes (minikube addons enable storage-provisioner)
 
 ## Installation
 - git pull https://github.com/MTthoas/Fleet-Management.git
 - cd Fleet-Management
+- minikube start
 - docker build . -t ronfflex/fleet-management
 - cd ../k8s
 - kubectl apply -f deploy-web-app.yaml
 
 To view the application, you can use the following command:
-- miniube service fleet-management
+- minikube service fleet-management
 
 
 ## Examen
@@ -25,7 +26,7 @@ Vous êtes Chief Technical Officer dans une entreprise et on vous demande d’ai
 Savoir automatiser un environnement de développement et de production complet à l’aide d’un système d’exploitation GNU/Linux.
 
 
-## Partie 1 (5 points) : Application
+## Partie 1 (5 points) : Application ✔️
 
 Créer une images permettant de lancer les différents services nécessaires à l’exploitation de l’activité de l’entreprise.
 
@@ -39,7 +40,7 @@ L’objectif de cette application est de gérer les utilisateurs de la société
 - Faire le lien entre les différentes données
 
 
-## Partie 2 (5 points) : Sauvegarde et récupération
+## Partie 2 (5 points) : Sauvegarde et récupération ✔️
 
 Maintenant que l’application est disponible, vous devez créer un script Shell permettant de sauvegarder l’ensemble des fichiers sources de votre serveur Web hébergeant l’application React. Le script doit pouvoir :
 
