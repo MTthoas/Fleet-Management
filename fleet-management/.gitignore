@@ -1,0 +1,30 @@
+# .gitignore
+package-lock.json
+
+# NPM dependencies
+node_modules/
+
+# Build directory
+dist/
+
+# Environment files
+.env
+
+# Editor settings
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+
+# Debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
