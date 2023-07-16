@@ -1,0 +1,44 @@
+---
+- name: Install development tools
+  hosts: all
+  become: true
+  tasks:
+
+    - name: Install npm
+      apt:
+        name: ['npm', 'nodejs', 'fish', 'tmux', 'curl', 'git']
+        state: latest
+        update_cache: yes
+
+    - name: Set Fish as the default shell
+      shell:
+        cmd: chsh -s /bin/fish
+
+    - name: Install Oh My Fish
+      fish_plugin:
+        name: oh-my-fish
+
+    - name: Install Tmux
+      apt:
+        name: tmux
+        state: latest
+
+    - name: Install Tmuxinator
+      fish_plugin:
+        name: tmuxinator
+
+    - name: Install other plugins
+      fish_plugin:
+        name: fzf
+
+    - name: Set up Tmuxinator
+      tmuxinator:
+        create:
+          - name: my-project
+            session:
+              - name: server
+                command: npm start
+
+    - name: Start Tmuxinator session
+      tmuxinator:
+        start: my-project
