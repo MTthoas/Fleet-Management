@@ -1,6 +1,21 @@
 # Linux Avancé
-### Examen
 
+## Requirements
+- Docker
+- Kubernetes (minikube)
+
+## Installation
+- git pull https://github.com/MTthoas/Fleet-Management.git
+- cd Fleet-Management
+- docker build . -t ronfflex/fleet-management
+- cd ../k8s
+- kubectl apply -f deploy-web-app.yaml
+
+To view the application, you can use the following command:
+- miniube service fleet-management
+
+
+## Examen
 ### <ins>Introduction:</ins>
 
 Vous êtes Chief Technical Officer dans une entreprise et on vous demande d’aider le responsable opérationnel d’un grand groupe de service de mise à disposition de flotte de véhicule en développant toute une suite d’outils permettant d'accélérer le développement d’une application Web.
