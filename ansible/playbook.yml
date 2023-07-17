@@ -2,19 +2,21 @@
 - name: Install and configure Fish and Tmux
   hosts: localhost
   tasks:
+  #  https://github.com/oh-my-fish/oh-my-fish#installation
     - name: Install Fish plugins (example with Oh My Fish)
       shell: |
         curl -L https://get.oh-my.fish > install.fish
         fish install.fish
         echo "omf install bobthefish" > install_omf.fish
         fish install_omf.fish
-    - name: Install Tmux plugins (example with Tmux Plugin Manager)
-      shell: |
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-        echo "set -g @plugin 'tmux-plugins/tpm'" >> ~/.tmux.conf
-        echo "set -g @plugin 'tmux-plugins/tmux-sensible'" >> ~/.tmux.conf
-        echo "run '~/.tmux/plugins/tpm/tpm'" >> ~/.tmux.conf
-        tmux start-server
-        tmux new-session -d
-        ~/.tmux/plugins/tpm/scripts/install_plugins.sh
-        tmux kill-server
+
+    # - name: Install Tmux plugins (example with Tmux Plugin Manager)
+    #   shell: |
+    #     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    #     echo "set -g @plugin 'tmux-plugins/tpm'" >> ~/.tmux.conf
+    #     echo "set -g @plugin 'tmux-plugins/tmux-sensible'" >> ~/.tmux.conf
+    #     echo "run '~/.tmux/plugins/tpm/tpm'" >> ~/.tmux.conf
+    #     tmux start-server
+    #     tmux new-session -d
+    #     ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+    #     tmux kill-server

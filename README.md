@@ -59,7 +59,7 @@ Maintenant que l’application est disponible, vous devez créer un script Shell
 Le script doit être lancé tous les jours à 3h30 du matin. Vous devez être capable de montrer que vous savez tester ce script à tout moment.
 
 
-## Partie 3 (5 points) : Automatisation IDE
+## Partie 3 (5 points) : Automatisation IDE ✔️
 
 Vous devez automatiser l’installation d’un environnement de développement Web basé sur les outils suivants :
 
@@ -71,7 +71,7 @@ Vous devez automatiser l’installation d’un environnement de développement W
 Vous devez montrer un minimum de configuration et ajouter du style à l’aide des différents plugins, Fish et Tmux afin de rendre l’environnement plus agréable à utiliser pour vos développeurs.
 
 
-### <ind>Bonus (5 points)</ins>
+### <ind>Bonus (5 points)</ins> ✔️
 
 - Cluster Kubernetes ou Docker Swarm
 - Code bien commenté
