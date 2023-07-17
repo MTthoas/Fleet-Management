@@ -5,15 +5,22 @@
 - Kubernetes (minikube addons enable storage-provisioner)
 
 ## Installation
+# Part 1 & 2
 - git pull https://github.com/MTthoas/Fleet-Management.git
-- cd Fleet-Management
-- minikube start
+- cd Fleet-Management/fleet-management
 - docker build . -t ronfflex/fleet-management
+- minikube start
 - cd ../k8s
 - kubectl apply -f deploy-web-app.yaml
 
 To view the application, you can use the following command:
 - minikube service fleet-management
+
+# Part 3
+- cd ../ansible
+- docker build -t web-dev-env .
+- docker run -d --name web-dev-env-container web-dev-env
+- docker exec -it web-dev-env-container bash -c "ansible-playbook playbook.yml"
 
 
 ## Examen
