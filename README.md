@@ -19,7 +19,7 @@ To view the application, you can use the following command:
 # Part 3
 - cd ../ansible
 - docker build -t web-dev-env .
-- docker run -d --name web-dev-env-container web-dev-env
+- docker run -it -d --name web-dev-env-container web-dev-env
 - docker exec -it web-dev-env-container bash -c "ansible-playbook playbook.yml"
 
 

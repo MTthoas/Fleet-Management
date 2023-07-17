@@ -1,22 +1,23 @@
 ---
-- name: Install and configure Fish and Tmux
+- name: Setup Dev Environment
   hosts: localhost
   tasks:
-  #  https://github.com/oh-my-fish/oh-my-fish#installation
-    - name: Install Fish plugins (example with Oh My Fish)
-      shell: |
-        curl -L https://get.oh-my.fish > install.fish
-        fish install.fish
-        echo "omf install bobthefish" > install_omf.fish
-        fish install_omf.fish
+    - name: Install Fish and Tmux
+      command: apk add --no-cache fish tmux
 
-    # - name: Install Tmux plugins (example with Tmux Plugin Manager)
-    #   shell: |
-    #     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    #     echo "set -g @plugin 'tmux-plugins/tpm'" >> ~/.tmux.conf
-    #     echo "set -g @plugin 'tmux-plugins/tmux-sensible'" >> ~/.tmux.conf
-    #     echo "run '~/.tmux/plugins/tpm/tpm'" >> ~/.tmux.conf
-    #     tmux start-server
-    #     tmux new-session -d
-    #     ~/.tmux/plugins/tpm/scripts/install_plugins.sh
-    #     tmux kill-server
+    - name: Install Fish Plugins
+      command: fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+      become: yes
+
+    - name: Set Fish as default shell
+      become: yes
+      lineinfile:
+        path: /etc/passwd
+        regexp: "^root:"
+        line: "root:x:0:0:root:/root:/usr/bin/fish"
+
+    - name: Install Tmux Plugin Manager
+      git:
+        repo: https://github.com/tmux-plugins/tpm
+        dest: ~/.tmux/plugins/tpm
+      become: yes
