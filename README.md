@@ -2,17 +2,31 @@
 
 ## Requirements
 - Docker
-- Kubernetes (minikube)
+- Kubernetes (minikube addons enable storage-provisioner)
+- Ansible on a unix system (debian, ubuntu, wsl for windows users etc.)
 
 ## Installation
+# Part 1 & 2
 - git pull https://github.com/MTthoas/Fleet-Management.git
-- cd Fleet-Management
+- cd Fleet-Management/fleet-management
 - docker build . -t ronfflex/fleet-management
+- minikube start
 - cd ../k8s
 - kubectl apply -f deploy-web-app.yaml
 
 To view the application, you can use the following command:
-- miniube service fleet-management
+- minikube service fleet-management
+
+# Part 3
+- cd ../ansible
+- docker compose up --detach --build
+- ssh-keygen (only if you don't have a ssh key on your computer)
+- $HOME/.ssh/id_rsa.pub (copy the key manually)
+- docker compose exec debian bash
+- vim /root/.ssh/authorized_keys (paste the key and save)
+- /etc/init.d/ssh start
+- exit
+- ansible-playbook -u root playbook.yml --ask-become-pass (password is root by default)
 
 
 ## Examen
@@ -25,7 +39,7 @@ Vous êtes Chief Technical Officer dans une entreprise et on vous demande d’ai
 Savoir automatiser un environnement de développement et de production complet à l’aide d’un système d’exploitation GNU/Linux.
 
 
-## Partie 1 (5 points) : Application
+## Partie 1 (5 points) : Application ✔️
 
 Créer une images permettant de lancer les différents services nécessaires à l’exploitation de l’activité de l’entreprise.
 
@@ -39,7 +53,7 @@ L’objectif de cette application est de gérer les utilisateurs de la société
 - Faire le lien entre les différentes données
 
 
-## Partie 2 (5 points) : Sauvegarde et récupération
+## Partie 2 (5 points) : Sauvegarde et récupération ✔️
 
 Maintenant que l’application est disponible, vous devez créer un script Shell permettant de sauvegarder l’ensemble des fichiers sources de votre serveur Web hébergeant l’application React. Le script doit pouvoir :
 
@@ -51,7 +65,7 @@ Maintenant que l’application est disponible, vous devez créer un script Shell
 Le script doit être lancé tous les jours à 3h30 du matin. Vous devez être capable de montrer que vous savez tester ce script à tout moment.
 
 
-## Partie 3 (5 points) : Automatisation IDE
+## Partie 3 (5 points) : Automatisation IDE ✔️
 
 Vous devez automatiser l’installation d’un environnement de développement Web basé sur les outils suivants :
 
@@ -63,7 +77,7 @@ Vous devez automatiser l’installation d’un environnement de développement W
 Vous devez montrer un minimum de configuration et ajouter du style à l’aide des différents plugins, Fish et Tmux afin de rendre l’environnement plus agréable à utiliser pour vos développeurs.
 
 
-### <ind>Bonus (5 points)</ins>
+### <ind>Bonus (5 points)</ins> ✔️
 
 - Cluster Kubernetes ou Docker Swarm
 - Code bien commenté

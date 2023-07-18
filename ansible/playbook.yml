@@ -1,0 +1,56 @@
+---
+- name: Setup Dev Environment
+  hosts: 127.0.0.1
+  become: true
+  vars:
+    user_password: root
+  tasks:
+    - name: Install necessary python packages
+      package:
+        name: python3-pexpect
+        state: present
+
+    - name: Install Curl
+      package:
+        name: curl
+        state: present
+
+    - name: Install Git
+      package:
+        name: git
+        state: present
+
+    - name: Install tmux
+      package:
+        name: tmux
+        state: present
+
+    - name: Install Fish shell
+      package:
+        name: fish
+        state: present
+
+    - name: Add fish to /etc/shells
+      lineinfile:
+        path: /etc/shells
+        line: /usr/bin/fish
+        state: present
+
+    - name: Change default shell to fish for root
+      expect:
+        command: chsh -s /usr/bin/fish root
+        responses:
+          Password: "{{ user_password }}"
+
+    # - name: Install oh-my-fish
+    #   shell: curl -L https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+    #   args:
+    #     creates: ~/.config/omf
+
+    # - name: Install bobthefish theme
+    #   shell: echo "omf theme bobthefish" | fish
+    #   args:
+    #     creates: ~/.config/omf/themes/bobthefish/
+
+    # - name: Reload the terminal
+    #   shell: fish -c "omf reload"

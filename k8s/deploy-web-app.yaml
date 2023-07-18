@@ -34,12 +34,23 @@ spec:
         ports:
         - containerPort: 3000
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: fleet-management-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: backup-cronjob
 spec:
-  schedule: "*/3 * * * *"
+  schedule: "30 3 * * *"
   jobTemplate:
     spec:
       template:
@@ -51,4 +62,11 @@ spec:
             - /bin/sh
             - -c
             - /app/scripts/backup-script.sh
+            volumeMounts:
+            - name: backup-storage
+              mountPath: /backup
           restartPolicy: OnFailure
+          volumes:
+          - name: backup-storage
+            persistentVolumeClaim:
+              claimName: fleet-management-pvc
