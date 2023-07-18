@@ -3,17 +3,30 @@
 ## Requirements
 - Docker
 - Kubernetes (minikube addons enable storage-provisioner)
+- Ansible on a unix system (debian, ubuntu, wsl for windows users etc.)
 
 ## Installation
+# Part 1 & 2
 - git pull https://github.com/MTthoas/Fleet-Management.git
-- cd Fleet-Management
-- minikube start
+- cd Fleet-Management/fleet-management
 - docker build . -t ronfflex/fleet-management
+- minikube start
 - cd ../k8s
 - kubectl apply -f deploy-web-app.yaml
 
 To view the application, you can use the following command:
 - minikube service fleet-management
+
+# Part 3
+- cd ../ansible
+- docker compose up --detach --build
+- ssh-keygen (only if you don't have a ssh key on your computer)
+- $HOME/.ssh/id_rsa.pub (copy the key manually)
+- docker compose exec debian bash
+- vim /root/.ssh/authorized_keys (paste the key and save)
+- /etc/init.d/ssh start
+- exit
+- ansible-playbook -u root playbook.yml --ask-become-pass (password is root by default)
 
 
 ## Examen
@@ -52,7 +65,7 @@ Maintenant que l’application est disponible, vous devez créer un script Shell
 Le script doit être lancé tous les jours à 3h30 du matin. Vous devez être capable de montrer que vous savez tester ce script à tout moment.
 
 
-## Partie 3 (5 points) : Automatisation IDE
+## Partie 3 (5 points) : Automatisation IDE ✔️
 
 Vous devez automatiser l’installation d’un environnement de développement Web basé sur les outils suivants :
 
@@ -64,7 +77,7 @@ Vous devez automatiser l’installation d’un environnement de développement W
 Vous devez montrer un minimum de configuration et ajouter du style à l’aide des différents plugins, Fish et Tmux afin de rendre l’environnement plus agréable à utiliser pour vos développeurs.
 
 
-### <ind>Bonus (5 points)</ins>
+### <ind>Bonus (5 points)</ins> ✔️
 
 - Cluster Kubernetes ou Docker Swarm
 - Code bien commenté
