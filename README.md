@@ -3,6 +3,7 @@
 ## Requirements
 - Docker
 - Kubernetes (minikube addons enable storage-provisioner)
+- Ansible on a unix system (debian, ubuntu, wsl for windows users etc.)
 
 ## Installation
 # Part 1 & 2
@@ -18,9 +19,14 @@ To view the application, you can use the following command:
 
 # Part 3
 - cd ../ansible
-- docker build -t web-dev-env .
-- docker run -it -d --name web-dev-env-container web-dev-env
-- docker exec -it web-dev-env-container bash -c "ansible-playbook playbook.yml"
+- docker compose up --detach --build
+- ssh-keygen (only if you don't have a ssh key on your computer)
+- $HOME/.ssh/id_rsa.pub (copy the key manually)
+- docker compose exec debian bash
+- vim /root/.ssh/authorized_keys (paste the key and save)
+- /etc/init.d/ssh start
+- exit
+- ansible-playbook -u root playbook.yml --ask-become-pass (password is root by default)
 
 
 ## Examen

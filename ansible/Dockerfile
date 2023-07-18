@@ -1,10 +1,6 @@
 FROM debian:latest
 
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    python3-dev \
-    libffi-dev \
-    libssl-dev \
-    git \
-    openssh-client \
+RUN echo "root:root" | chpasswd
+
+RUN apt update -y \
+    && apt install -y openssh-server vim
